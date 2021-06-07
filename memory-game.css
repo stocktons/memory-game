@@ -1,0 +1,63 @@
+/* you can add to or change this. */
+body {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  text-align: center;
+  max-width: 1000px;
+}
+
+#game {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1000px;
+  padding-top: 25px;
+}
+
+h1 {
+  font-family: 'Lobster', cursive;
+  font-size: 3.25rem;
+  padding: 10px 0px;
+}
+
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.25rem;
+  padding: 10px 0px;
+}
+
+.card {
+  height: 275px;
+  width: 175px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.back-card {
+  background-color: rgb(240, 241, 242);
+}
+
+.red-card {
+  background-color: red;
+}
+
+.blue-card {
+  background-color: blue;
+}
+
+.green-card {
+  background-color: green; 
+}
+
+.orange-card {
+  background-color: orange;  
+}
+
+.purple-card {
+  background-color: purple;  
+}
