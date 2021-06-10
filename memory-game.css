@@ -38,10 +38,6 @@ h2 {
   border-radius: 10px;
 }
 
-.back-card {
-  background-color: rgb(233, 233, 233);
-}
-
 .red-card {
   background-color: red;
 }
@@ -60,4 +56,8 @@ h2 {
 
 .purple-card {
   background-color: purple;  
+}
+
+.back-card {
+  background-color: rgb(233, 233, 233);
 }

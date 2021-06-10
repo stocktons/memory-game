@@ -40,9 +40,18 @@ function shuffle(items) {
 
 function createCards(colors) {
   const gameBoard = document.getElementById("game");
-
+  
   for (let color of colors) {
-    // missing code here ...
+    // create a card
+    const card = document.createElement("div");
+    // give it the class with that color
+    card.classList.add("card", `${color}-card`, "back-card")
+    // append it to the gameBoard
+    gameBoard.append(card);
+     // add a click listener called handleCardClick
+    card.addEventListener("click", function(evt){
+      handleCardClick(evt);
+    })
   }
 }
 
@@ -50,16 +59,25 @@ function createCards(colors) {
 
 function flipCard(card) {
   // ... you need to write this ...
+  // all this does is toggle between classes, handleCardClick decides if it should run
+  card.classList.remove("back-card");
 }
 
 /** Flip a card face-down. */
 
 function unFlipCard(card) {
   // ... you need to write this ...
+  // only runs if no match
+  card.classList.add("back-card");
 }
 
 /** Handle clicking on a card: this could be first-card or second-card. */
 
 function handleCardClick(evt) {
   // ... you need to write this ...
+  // start by restoring event listeners? 
+  // if first click, just flip and wait, don't do anything else
+  // after second click check for match and either run unFlipCard or do nothing
+  // once clicked, remove event listener from that card
+  alert("I got clicked!");
 }
