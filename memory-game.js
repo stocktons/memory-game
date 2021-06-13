@@ -94,16 +94,16 @@ function handleCardClick(evt) {
 }
 
 
-function toggleAllCards() {
+function showAllCards() {
   const cards = document.querySelectorAll('.card');
   for(let card of cards){
-    card.classList.toggle('back-card');
+    card.classList.remove('back-card');
   }
 }
 
 const solution = document.querySelector('.solution');
 
-solution.addEventListener('click', toggleAllCards);
+solution.addEventListener('click', showAllCards);
 
 const newGame = document.querySelector('.new-game');
 
