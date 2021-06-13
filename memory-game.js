@@ -60,7 +60,10 @@ function createCards(colors) {
 function flipCard(card) {
   // ... you need to write this ...
   // all this does is toggle between classes, handleCardClick decides if it should run
-  card.classList.remove("back-card");
+  card.classList.toggle("back-card");
+
+
+  
 }
 
 /** Flip a card face-down. */
@@ -68,16 +71,27 @@ function flipCard(card) {
 function unFlipCard(card) {
   // ... you need to write this ...
   // only runs if no match
-  card.classList.add("back-card");
+  card.classList.toggle("back-card");
 }
 
 /** Handle clicking on a card: this could be first-card or second-card. */
 
 function handleCardClick(evt) {
   // ... you need to write this ...
-  // start by restoring event listeners? 
+  // start by restoring event listeners?
+  // select and add a variable to name the card? 
   // if first click, just flip and wait, don't do anything else
-  // after second click check for match and either run unFlipCard or do nothing
+  // after second click check for match and either wait one second and run unFlipCard or do nothing
   // once clicked, remove event listener from that card
   alert("I got clicked!");
+
+  setTimeout(unFlipCard(), 1000);
+}
+
+
+function toggleAllCards() {
+  const cards = document.querySelectorAll('.card');
+  for(let card of cards){
+    card.classList.toggle('back-card');
+  }
 }
