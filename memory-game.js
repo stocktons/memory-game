@@ -41,17 +41,21 @@ function shuffle(items) {
 function createCards(colors) {
   const gameBoard = document.getElementById("game");
   
+  let counter = 1;
   for (let color of colors) {
     // create a card
     const card = document.createElement("div");
     // give it the class with that color
     card.classList.add("card", `${color}-card`, "back-card")
+    // give each card a unique id
+    card.setAttribute("id", `card${counter}`);
     // append it to the gameBoard
     gameBoard.append(card);
      // add a click listener called handleCardClick
     card.addEventListener("click", function(evt){
       handleCardClick(evt);
     })
+    counter++;
   }
 }
 
@@ -83,9 +87,10 @@ function handleCardClick(evt) {
   // if first click, just flip and wait, don't do anything else
   // after second click check for match and either wait one second and run unFlipCard or do nothing
   // once clicked, remove event listener from that card
+  
   alert("I got clicked!");
-
-  setTimeout(unFlipCard(), 1000);
+  
+  //setTimeout(unFlipCard(), 1000);
 }
 
 
@@ -95,3 +100,15 @@ function toggleAllCards() {
     card.classList.toggle('back-card');
   }
 }
+
+const solution = document.querySelector('.solution');
+
+solution.addEventListener('click', toggleAllCards);
+
+const newGame = document.querySelector('.new-game');
+
+const refreshPage = function(){
+  location.reload();
+};
+
+newGame.addEventListener('click', refreshPage);

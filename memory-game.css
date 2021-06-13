@@ -31,6 +31,24 @@ h2 {
   padding: 10px 0px;
 }
 
+#button-container {
+  padding: 10px;
+  margin-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1000px;
+}
+
+button {
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+  font-family: 'Montserrat', sans-serif;
+  background-color: white;
+  border-radius: 5px;
+}
+
 .card {
   height: 275px;
   width: 175px;
