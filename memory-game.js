@@ -1,7 +1,7 @@
 "use strict";
 
 /* Memory game: find matching pairs of cards and flip both of them. */
-
+const gameBoard = document.getElementById("game");
 const FOUND_MATCH_WAIT_MSECS = 1000;
 const COLORS = [
   "red", "blue", "green", "orange", "purple",
@@ -39,9 +39,7 @@ function shuffle(items) {
  */
 
 function createCards(colors) {
-  const gameBoard = document.getElementById("game");
   let counter = 1;
-
   for (let color of colors) {
     // create a card
     const card = document.createElement("div");
@@ -52,10 +50,20 @@ function createCards(colors) {
     // append it to the gameBoard
     gameBoard.append(card); 
     // add a click listener called handleCardClick
-    card.addEventListener("click", handleCardClick);
+    // card.addEventListener("click", handleCardClick);
     counter++;
   }
 }
+
+let clickCounter = 0;
+const clickEvent = gameBoard.addEventListener('click', function(evt){
+    if(evt.target.classList.contains('back-card')){
+        console.log(`clickCounter is ${clickCounter}`);
+        handleCardClick(evt);
+        clickCounter++;
+        console.log(`clickCounter is ${clickCounter}`);
+    }
+})
 
 /** Flip a card face-up. */
 
@@ -76,21 +84,37 @@ function unFlipCard(card) {
 }
 
 /** Handle clicking on a card: this could be first-card or second-card. */
-
+let cardA, cardB;
+let matchCount = 0;
 function handleCardClick(evt) {
   // ... you need to write this ...
-  // start by restoring event listeners?
-  // select and add a variable to name the card? 
-  // if first click, just flip and wait, don't do anything else
-  // after second click check for match and either wait one second and run unFlipCard or do nothing
-  // once clicked, remove event listener from that card
   console.log(evt);
   const card = evt.target;
-  if(card.classList.contains('back-card')){ // and classList !== classList and one other card is flipped (loop through all cards and check classList.length for any to be less than 3)
+  if(clickCounter === 0){ // and classList !== classList and one other card is flipped (loop through all cards and check classList.length for any to be less than 3)
     flipCard(card);
-    unFlipCard(card);
+    cardA = card;
+    console.log('cardA is ' + cardA.classList);
+  } else if(clickCounter === 1){
+        flipCard(card);
+        cardB = card;
+        console.log('cardB is ' + cardB.classList);
+        
+        if(cardA.getAttribute('class') === cardB.getAttribute('class')){
+            matchCount++;
+            clickCounter = -1;
+        } else {
+            unFlipCard(cardA);
+            unFlipCard(cardB);
+            clickCounter = -1;
+        }
+    }
+    console.log(`${matchCount} matches`);
+    if(matchCount === 5){
+        console.log("You win!");
+    }
+    
   };
-}
+
 
 
 function showAllCards() {

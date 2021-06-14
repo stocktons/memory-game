@@ -79,3 +79,7 @@ button {
 .back-card {
   background-color: rgb(233, 233, 233);
 }
+
+.no-click {
+  pointer-events: none;
+}
