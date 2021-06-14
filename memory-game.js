@@ -86,11 +86,28 @@ function unFlipCard(card) {
 /** Handle clicking on a card: this could be first-card or second-card. */
 let cardA, cardB;
 let matchCount = 0;
+
+const allCards = document.querySelectorAll('.card');
+function noClick(){
+  for(let card of allCards){
+    card.classList.add('no-click');
+  }
+  setTimeout(function(){
+    for(let card of allCards){
+    card.classList.remove('no-click');
+    }
+  }, 1000);
+}
+
+
+
+
 function handleCardClick(evt) {
   // ... you need to write this ...
   console.log(evt);
   const card = evt.target;
   if(clickCounter === 0){ // and classList !== classList and one other card is flipped (loop through all cards and check classList.length for any to be less than 3)
+   
     flipCard(card);
     cardA = card;
     console.log('cardA is ' + cardA.classList);
@@ -98,14 +115,17 @@ function handleCardClick(evt) {
         flipCard(card);
         cardB = card;
         console.log('cardB is ' + cardB.classList);
+        noClick();
         
         if(cardA.getAttribute('class') === cardB.getAttribute('class')){
             matchCount++;
             clickCounter = -1;
+            card.classList.remove('no-click');
         } else {
             unFlipCard(cardA);
             unFlipCard(cardB);
             clickCounter = -1;
+            card.classList.remove('no-click');
         }
     }
     console.log(`${matchCount} matches`);
