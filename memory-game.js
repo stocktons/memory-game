@@ -35,13 +35,13 @@ function shuffle(items) {
  *
  * Each div DOM element will have:
  * - a class with the value of the color
- * - an click listener for each card to handleCardClick
+ * - a click listener for each card to handleCardClick
  */
 
 function createCards(colors) {
   const gameBoard = document.getElementById("game");
-  
   let counter = 1;
+
   for (let color of colors) {
     // create a card
     const card = document.createElement("div");
@@ -50,11 +50,9 @@ function createCards(colors) {
     // give each card a unique id
     card.setAttribute("id", `card${counter}`);
     // append it to the gameBoard
-    gameBoard.append(card);
-     // add a click listener called handleCardClick
-    card.addEventListener("click", function(evt){
-      handleCardClick(evt);
-    })
+    gameBoard.append(card); 
+    // add a click listener called handleCardClick
+    card.addEventListener("click", handleCardClick);
     counter++;
   }
 }
@@ -64,10 +62,7 @@ function createCards(colors) {
 function flipCard(card) {
   // ... you need to write this ...
   // all this does is toggle between classes, handleCardClick decides if it should run
-  card.classList.toggle("back-card");
-
-
-  
+  card.classList.remove('back-card');
 }
 
 /** Flip a card face-down. */
@@ -75,7 +70,9 @@ function flipCard(card) {
 function unFlipCard(card) {
   // ... you need to write this ...
   // only runs if no match
-  card.classList.toggle("back-card");
+  setTimeout(function(){
+    card.classList.add('back-card')
+  }, 1000);
 }
 
 /** Handle clicking on a card: this could be first-card or second-card. */
@@ -87,10 +84,12 @@ function handleCardClick(evt) {
   // if first click, just flip and wait, don't do anything else
   // after second click check for match and either wait one second and run unFlipCard or do nothing
   // once clicked, remove event listener from that card
-  
-  alert("I got clicked!");
-  
-  //setTimeout(unFlipCard(), 1000);
+  console.log(evt);
+  const card = evt.target;
+  if(card.classList.contains('back-card')){ // and classList !== classList and one other card is flipped (loop through all cards and check classList.length for any to be less than 3)
+    flipCard(card);
+    unFlipCard(card);
+  };
 }
 
 
@@ -102,13 +101,10 @@ function showAllCards() {
 }
 
 const solution = document.querySelector('.solution');
-
 solution.addEventListener('click', showAllCards);
 
 const newGame = document.querySelector('.new-game');
-
 const refreshPage = function(){
   location.reload();
 };
-
 newGame.addEventListener('click', refreshPage);

@@ -57,23 +57,23 @@ button {
 }
 
 .red-card {
-  background-color: red;
+  background-color: rgb(255, 88, 105);
 }
 
 .blue-card {
-  background-color: blue;
+  background-color: rgb(88, 101, 254);
 }
 
 .green-card {
-  background-color: green; 
+  background-color: rgb(131, 205, 131); 
 }
 
 .orange-card {
-  background-color: orange;  
+  background-color: rgb(255, 189, 109);  
 }
 
 .purple-card {
-  background-color: purple;  
+  background-color: rgb(150, 70, 150);  
 }
 
 .back-card {
